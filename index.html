@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plataforma de cursos — rejilla de temas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 id="appCourseTitle">Plataforma de cursos</h1>
+      <p class="subtitle" id="appCourseSubtitle">Vídeos de YouTube por temario · highlights y capítulos opcionales</p>
+    </header>
+
+    <div class="app-shell">
+      <aside class="app-sidebar-slot">
+        <course-skill-sidebar id="courseSidebar"></course-skill-sidebar>
+      </aside>
+      <main class="app-main-slot">
+        <topic-main-panel id="topicPanel"></topic-main-panel>
+      </main>
+    </div>
+
+    <script src="js/course-data.js"></script>
+    <script src="js/components/topic-cube.js"></script>
+    <script src="js/components/course-skill-sidebar.js"></script>
+    <script src="js/components/topic-main-panel.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      (function () {
+        var c = window.COURSE_DATA;
+        if (!c) return;
+        var t = document.getElementById("appCourseTitle");
+        var s = document.getElementById("appCourseSubtitle");
+        if (t) t.textContent = c.name;
+        if (s) s.textContent = c.description || s.textContent;
+      })();
+    </script>
+  </body>
+</html>

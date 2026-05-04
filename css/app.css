@@ -1,0 +1,238 @@
+/* Variables globales — dark + indigo / deeppink */
+:root {
+  --bg-deep: #0a0a0f;
+  --bg-panel: #12121a;
+  --bg-elevated: #1a1a26;
+  --border-subtle: rgba(99, 102, 241, 0.22);
+  --text: #e8e8ef;
+  --text-muted: #9898a8;
+  --accent-indigo: #6366f1;
+  --accent-indigo-dim: #4f46e5;
+  --accent-pink: #ec4899;
+  --accent-pink-deep: #db2777;
+  --glow-indigo: rgba(99, 102, 241, 0.35);
+  --glow-pink: rgba(236, 72, 153, 0.28);
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius-sharp: 4px;
+  --sidebar-width: min(340px, 38vw);
+  --transition: 0.2s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.45;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: radial-gradient(ellipse 120% 80% at 10% 0%, rgba(99, 102, 241, 0.12), transparent 50%),
+    radial-gradient(ellipse 80% 60% at 100% 100%, rgba(236, 72, 153, 0.08), transparent 45%),
+    var(--bg-deep);
+}
+
+.app-header {
+  flex-shrink: 0;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(18, 18, 26, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(105deg, var(--accent-indigo), var(--accent-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.app-header .subtitle {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.app-shell {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+.app-sidebar-slot {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  border-right: 1px solid var(--border-subtle);
+  background: var(--bg-panel);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-main-slot {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 1rem 1.25rem 1.5rem;
+}
+
+.empty-state {
+  max-width: 520px;
+  margin: 2rem auto;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.empty-state strong {
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --sidebar-width: 100%;
+  }
+
+  .app-shell {
+    flex-direction: column;
+  }
+
+  .app-sidebar-slot {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+    max-height: 48vh;
+  }
+}
+
+/* —— course-skill-sidebar (light DOM, estilos globales reutilizables) —— */
+course-skill-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+}
+
+course-skill-sidebar .sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.85rem 0.75rem 1rem;
+  min-height: min-content;
+}
+
+course-skill-sidebar .sidebar-head {
+  padding: 0 0.15rem 0.35rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+course-skill-sidebar .sidebar-kicker {
+  margin: 0 0 0.2rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent-pink);
+  font-weight: 600;
+}
+
+course-skill-sidebar .sidebar-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+course-skill-sidebar .phases-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+course-skill-sidebar .phase-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+course-skill-sidebar .phase-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0 0.1rem;
+}
+
+course-skill-sidebar .phase-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  clip-path: polygon(30% 0, 100% 0, 100% 70%, 70% 100%, 0 100%, 0 30%);
+  background: var(--accent-indigo);
+}
+
+course-skill-sidebar .phase-dot[data-accent="pink"] {
+  background: var(--accent-pink);
+}
+
+course-skill-sidebar .phase-name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+course-skill-sidebar .skill-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  gap: 0.45rem;
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+course-skill-sidebar .skill-cell {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+course-skill-sidebar .skill-cell--empty {
+  min-height: 52px;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.04), rgba(236, 72, 153, 0.03));
+  border: 1px dashed rgba(99, 102, 241, 0.15);
+  clip-path: polygon(5% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 5%);
+  opacity: 0.55;
+}
+
+course-skill-sidebar topic-cube {
+  width: 100%;
+}
